@@ -21,17 +21,13 @@ const writeJSON = (name, data) => {
 };
 
 const getRemaining = () => {
-  client.get(
-    "application/rate_limit_status",
-    {},
-    (error, information, response) => {
-      if (!error) {
-        writeJSON("rate_limit_status.json", information);
-      } else {
-        console.log(error);
-      }
+  client.get("application/rate_limit_status", {}, (error, information) => {
+    if (!error) {
+      writeJSON("rate_limit_status.json", information);
+    } else {
+      console.log(error);
     }
-  );
+  });
 };
 
 const getFollowings = (screenName, index, cursor) => {
@@ -94,13 +90,47 @@ const intersect = (screenName0, screenName1) => {
 
 const optionDefinitions = [
   {
-    name: "remaining"
-    alias: "r"
-    type: Boolean
+    name: "following",
+    alias: "f",
+    type: Boolean,
+  },
+  {
+    name: "remain",
+    alias: "r",
+    type: Boolean,
+  },
+  {
+    name: "intersect",
+    alias: "i",
+    type: Boolean,
+  },
+  {
+    name: "user0",
+    alias: "u",
+    type: String,
+  },
+  {
+    name: "user1",
+    alias: "v",
+    type: String,
   },
 ];
 const options = commandLineArgs(optionDefinitions);
 
-//getRemaining();
-//getAllFollowings("kyoto_mast21", "1696124572085715889", 5);
-intersect("kyoto_mast21", "koituhatama");
+if (options.folowing) {
+  getRemaining();
+}
+if (options.users) {
+  if (!options.u) {
+    console.log("required: u");
+    return;
+  }
+  getAllFollowings(options.user0);
+}
+if (options.intersect) {
+  if (!options.u || !options.v) {
+    console.log("required: u, v");
+    return;
+  }
+  intersect(options.user0, options.user1);
+}

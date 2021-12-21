@@ -6,6 +6,7 @@ get intersection of Users A is following and users B is following.
 
 ```
 npm init
+npm install
 ```
 
 You should write as follows on `./src/api-token.js`
@@ -21,20 +22,28 @@ exports.authorization = {
 
 ## usage
 
-### get users
+### get the following
 
-- This get JSON files described the following of a user in
-- It outputs files splited by 200 users as `./output/${screen-name}-${index}.json)`
-- Caution: It use Twitter API of `friends/list`, and the endpoint is restricted to 15 calls in 15 minutes.
+- get JSON files described the following of a user in
+- output files splited by 200 users as `./output/${screen-name}-${index}.json)`
+- Caution: `friends/list`, the endpoint of Twitter API, is restricted to 15 calls in 15 minutes.
 
 ```
-node intersection.js -f
+node intersection.js -f -u screen_name
 ```
 
 ### intersect
 
-- This loads JSON files and output intersection
+- load JSON files and output the intersection
 
 ```
-node intersection.js -i
+node intersection.js -i -u screen_name0, screen_name1
+```
+
+### check the remaining trial
+
+- output [rate_limit_status](https://syncer.jp/Web/API/Twitter/REST_API/GET/application/rate_limit_status/) as `rate_limit_status.json`
+
+```
+node intersection.js -r
 ```
