@@ -9,7 +9,7 @@ $ npm init
 $ npm install
 ```
 
-You should write as follows on `./src/api-token.js`
+You should write the Twitter API's token as follows on `./src/api-token.js`
 
 ```Javascript
 exports.authorization = {
