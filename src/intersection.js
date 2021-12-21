@@ -117,20 +117,20 @@ const optionDefinitions = [
 ];
 const options = commandLineArgs(optionDefinitions);
 
-if (options.folowing) {
-  getRemaining();
-}
-if (options.users) {
-  if (!options.u) {
+if (options.following) {
+  if (!options.user0) {
     console.log("required: u");
     return;
   }
   getAllFollowings(options.user0);
 }
 if (options.intersect) {
-  if (!options.u || !options.v) {
+  if (!options.user0 || !options.user1) {
     console.log("required: u, v");
     return;
   }
   intersect(options.user0, options.user1);
+}
+if (options.remaining) {
+  getRemaining();
 }

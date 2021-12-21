@@ -1,17 +1,17 @@
 # twitter-intersection
 
-get intersection of Users A is following and users B is following.
+get the intersection of your following and someone's following.
 
 ## initialzation
 
 ```
-npm init
-npm install
+$ npm init
+$ npm install
 ```
 
 You should write as follows on `./src/api-token.js`
 
-```
+```Javascript
 exports.authorization = {
   consumer_key: CONSUMER_KEY,
   consumer_secret: CONSUMER_SECRET,
@@ -24,20 +24,20 @@ exports.authorization = {
 
 ### get the following
 
-- get JSON files described the following of a user in
-- output files splited by 200 users as `./output/${screen-name}-${index}.json)`
-- Caution: `friends/list`, the endpoint of Twitter API, is restricted to 15 calls in 15 minutes.
+- get JSON files mentioning the following of a user
+- output files split by 200 users as `./output/${screen-name}-${index}.json)`
+- **Caution**: `friends/list`, the endpoint of Twitter API, is restricted to 15 calls in 15 minutes.
 
 ```
-node intersection.js -f -u screen_name
+$ node intersection.js -f -u screen_name
 ```
 
 ### intersect
 
-- load JSON files and output the intersection
+- load JSON files written two persons' following in and output the intersection
 
 ```
-node intersection.js -i -u screen_name0, screen_name1
+$ node intersection.js -i -u screen_name0, screen_name1
 ```
 
 ### check the remaining trial
@@ -45,5 +45,8 @@ node intersection.js -i -u screen_name0, screen_name1
 - output [rate_limit_status](https://syncer.jp/Web/API/Twitter/REST_API/GET/application/rate_limit_status/) as `rate_limit_status.json`
 
 ```
-node intersection.js -r
+$ node intersection.js -r
+screen_name0: following xxx users
+screen_name1: following xxx users
+intersection: xxx users
 ```
